@@ -6,6 +6,16 @@ def main():
     srs = DG645('serial://COM3')
     # srs = ik.srs.SRSDG645.open_from_uri('serial://COM3')
     print(srs.query('*IDN?'))
+    # print(srs.query('TRAT?')) # query rep rate in hz
+    srs.get_all_delays()
+    while True:
+        ipt = input('>')
+        if ipt == '1':
+            srs.sendcmd('TSRC 5')
+        if ipt == '0':
+            srs.sendcmd('TSRC 0')
+        if ipt == '2':
+            break
     # try:
     #     srs.sendcmd('TRAT 3')
     #     print(srs.query('TRAT?'))
